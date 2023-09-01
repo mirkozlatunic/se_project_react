@@ -1,4 +1,6 @@
 import './Header.css'
+import Logo from '../../images/Logo.svg'
+import Avatar from '../../images/avatar.svg'
 
 const Header = ({ onCreateModal }) => {
   const weatherCity = 'Redondo Beach (USA)'
@@ -11,7 +13,7 @@ const Header = ({ onCreateModal }) => {
     <header className='header'>
       <div className='header__menu-left'>
         <div>
-          <img src={require('../../images/Logo.svg').default} alt='logo' />
+          <img src={Logo} alt='logo' />
         </div>
         <div className='header__date-location'>
           {currentDate}, {weatherCity}
@@ -29,11 +31,7 @@ const Header = ({ onCreateModal }) => {
         </div>
         <div className='header__name'>Mirko Zlatunic</div>
         <div>
-          <img
-            src={require('../../images/avatar.svg').default}
-            alt='avatar'
-            className='header__avatar'
-          />
+          <img src={Avatar} alt='avatar' className='header__avatar' />
         </div>
       </div>
     </header>

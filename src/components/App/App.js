@@ -23,10 +23,12 @@ function App() {
   }
 
   useEffect(() => {
-    getForcastWeather().then((data) => {
-      const temperature = parseWeatherData(data)
-      setTemp(temperature)
-    })
+    getForcastWeather()
+      .then((data) => {
+        const temperature = parseWeatherData(data)
+        setTemp(temperature)
+      })
+      .catch(console.error)
   }, [])
 
   return (

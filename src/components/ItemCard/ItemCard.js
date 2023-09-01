@@ -6,12 +6,12 @@ const ItemCard = ({ item, onSelectCard }) => {
       <div>
         <img
           src={item.link}
-          alt='card-image'
+          alt={item.name}
           className='card__image'
           onClick={() => onSelectCard(item)}
         />
       </div>
-      <div className='card__name'>{item.name}</div>
+      <h3 className='card__name'>{item.name}</h3>
     </div>
   )
 }
