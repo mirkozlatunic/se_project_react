@@ -1,0 +1,50 @@
+.weather {
+  position: relative;
+}
+
+.weather__info {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 12px;
+  bottom: 12px;
+  left: 16px;
+  max-height: 40px;
+  max-width: 69px;
+  color: #fff;
+  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  margin: 0;
+}
+
+.weather__image {
+  width: 100%;
+}
+
+@media screen and (max-width: 899px) {
+  .weather__info {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 635px) {
+  .weather__info {
+    font-size: 21px;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .weather__info {
+    font-size: 12px;
+    top: 11px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .weather__info {
+    font-size: 10px;
+    top: 9px;
+  }
+}

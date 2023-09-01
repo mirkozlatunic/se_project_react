@@ -1,0 +1,15 @@
+.main {
+  padding: 0 40px;
+}
+
+@media screen and (max-width: 899px) {
+  .main {
+    padding: 0 25px;
+  }
+}
+
+@media screen and (max-width: 452px) {
+  .main {
+    padding: 0 10px;
+  }
+}

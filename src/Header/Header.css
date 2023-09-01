@@ -1,0 +1,127 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+  padding: 32px 40px 28px 40px;
+}
+
+.header__menu-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__date-location {
+  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.header__add-button {
+  border: none;
+  padding: 5px 0px 5px 0px;
+  background-color: #fff;
+  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.header__add-button:hover {
+  opacity: 0.4;
+}
+
+.header__name {
+  color: #000;
+  padding-left: 20px;
+  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.header__avatar {
+  padding-left: 12px;
+  max-width: 40px;
+  max-height: 40px;
+}
+
+@media screen and (max-width: 899px) {
+  .header {
+    padding: 20px 25px 15px 25px;
+  }
+}
+
+@media screen and (max-width: 635px) {
+  .header__name {
+    font-size: 15px;
+    padding-left: 10px;
+  }
+  .header__date-location {
+    font-size: 15px;
+  }
+  .header__add-button {
+    font-size: 15px;
+  }
+  .header__avatar {
+    padding-left: 10px;
+  }
+}
+
+@media screen and (max-width: 452px) {
+  .header {
+    padding: 15px 10px 0px 10px;
+  }
+  .header__name {
+    font-size: 12px;
+    padding-left: 5px;
+  }
+  .header__date-location {
+    font-size: 12px;
+  }
+  .header__add-button {
+    font-size: 12px;
+  }
+  .header__avatar {
+    padding-left: 5px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 5px 10px 0px 10px;
+  }
+  .header__menu-left {
+    gap: 0px;
+    text-align: center;
+  }
+  .header__name {
+    font-size: 10px;
+    text-align: center;
+    padding-left: 5px;
+  }
+  .header__date-location {
+    font-size: 10px;
+    text-align: center;
+  }
+  .header__add-button {
+    font-size: 10px;
+    text-align: center;
+  }
+  .header__avatar {
+    padding-left: 5px;
+  }
+}
