@@ -11,7 +11,7 @@ const Header = ({ onCreateModal }) => {
     <header className='header'>
       <div className='header__menu-left'>
         <div>
-          <img src={require('../images/Logo.svg').default} alt='logo' />
+          <img src={require('../../images/Logo.svg').default} alt='logo' />
         </div>
         <div className='header__date-location'>
           {currentDate}, {weatherCity}
@@ -30,7 +30,7 @@ const Header = ({ onCreateModal }) => {
         <div className='header__name'>Mirko Zlatunic</div>
         <div>
           <img
-            src={require('../images/avatar.svg').default}
+            src={require('../../images/avatar.svg').default}
             alt='avatar'
             className='header__avatar'
           />

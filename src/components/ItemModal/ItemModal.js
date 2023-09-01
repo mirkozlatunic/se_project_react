@@ -1,4 +1,4 @@
-import '../ItemModal/ItemModal.css'
+import './ItemModal.css'
 
 const ItemModal = ({ selectedCard, onClose }) => {
   return (
