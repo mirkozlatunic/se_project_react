@@ -37,6 +37,7 @@
   width: 328px;
   height: 328px;
   border-radius: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .card__items {
