@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/se_project_react/static/css/main.48d90ff9.css",
+    "main.js": "/se_project_react/static/js/main.2ee6ab8b.js",
+    "static/js/787.79f92504.chunk.js": "/se_project_react/static/js/787.79f92504.chunk.js",
+    "static/media/avatar.svg": "/se_project_react/static/media/avatar.ca123d6f2e819e1085c7201af82b5164.svg",
+    "static/media/CabinetGrotesk-Bold.woff": "/se_project_react/static/media/CabinetGrotesk-Bold.0fb1cbec860aa3537c32.woff",
+    "static/media/CabinetGrotesk-Bold.woff2": "/se_project_react/static/media/CabinetGrotesk-Bold.c9c3bc30c44ade9d3b9b.woff2",
+    "static/media/snow.svg": "/se_project_react/static/media/snow.20a89d711249712380ea9f4269b386a3.svg",
+    "static/media/snowy.svg": "/se_project_react/static/media/snowy.a5bb7441280cef64ae081acadb7d6e66.svg",
+    "static/media/storm.svg": "/se_project_react/static/media/storm.b98983c750d3f283a9267efc3c3fd940.svg",
+    "static/media/stormy.svg": "/se_project_react/static/media/stormy.51c68e175fd385c6055462b91d462bd5.svg",
+    "static/media/rain.svg": "/se_project_react/static/media/rain.ebe0301b9856c6c8564df5c8beea1ac8.svg",
+    "static/media/rainy.svg": "/se_project_react/static/media/rainy.8fd968acf8cb57624e2a990b324c1278.svg",
+    "static/media/fog.svg": "/se_project_react/static/media/fog.cee462810b2a7c8696b7701170241a66.svg",
+    "static/media/foggy.svg": "/se_project_react/static/media/foggy.8ad4efe699a8e3a16ae0220f3b5a3d48.svg",
+    "static/media/Logo.svg": "/se_project_react/static/media/Logo.2e52a3b54443b649938df0a9b3d231e2.svg",
+    "static/media/cloud.svg": "/se_project_react/static/media/cloud.c52565b10982a97a5a67275442bd12ee.svg",
+    "static/media/cloudy.svg": "/se_project_react/static/media/cloudy.afb98af2bd43d3a2a330e655695bd2c9.svg",
+    "static/media/Modal-Close-Button-grey.svg": "/se_project_react/static/media/Modal-Close-Button-grey.41654df85174806f9922.svg",
+    "index.html": "/se_project_react/index.html",
+    "static/media/Modal-Close-Button-white.svg": "/se_project_react/static/media/Modal-Close-Button-white.34bff1eb1ed0331b4c52.svg",
+    "static/media/moon.svg": "/se_project_react/static/media/moon.ae0e6bbe1e0bfc883f3ba207396bf3b4.svg",
+    "static/media/sunny.svg": "/se_project_react/static/media/sunny.1c3ffd02d92146a2673939be89b88d54.svg",
+    "main.48d90ff9.css.map": "/se_project_react/static/css/main.48d90ff9.css.map",
+    "main.2ee6ab8b.js.map": "/se_project_react/static/js/main.2ee6ab8b.js.map",
+    "787.79f92504.chunk.js.map": "/se_project_react/static/js/787.79f92504.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48d90ff9.css",
+    "static/js/main.2ee6ab8b.js"
+  ]
+}
