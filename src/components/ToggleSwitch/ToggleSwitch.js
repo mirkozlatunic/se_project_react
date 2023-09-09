@@ -1,17 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTemperatureUnitContext'
 import './ToggleSwitch.css'
 
 const ToggleSwitch = () => {
-  const [currentTemperatureUnit, handleToggleSwitchChange] = useState('C')
+  // const [currentTemperatureUnit, handleToggleSwitchChange] = useState('C')
 
-  const handleChange = (e) => {
-    if (currentTemperatureUnit === 'C') handleToggleSwitchChange('F')
-    if (currentTemperatureUnit === 'F') handleToggleSwitchChange('C')
-  }
-  console.log(currentTemperatureUnit)
+  // const handleChange = (e) => {
+  //   if (currentTemperatureUnit === 'C') handleToggleSwitchChange('F')
+  //   if (currentTemperatureUnit === 'F') handleToggleSwitchChange('C')
+  // }
+  // console.log(currentTemperatureUnit)
+  const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
+    CurrentTemperatureUnitContext
+  )
+
   return (
     <label className='switch'>
-      <input type='checkbox' className='switch__box' onChange={handleChange} />
+      <input
+        type='checkbox'
+        className='switch__box'
+        onChange={handleToggleSwitchChange}
+      />
       <span
         className={
           currentTemperatureUnit === 'F'
