@@ -1,6 +1,7 @@
 import './Header.css'
 import Logo from '../../images/Logo.svg'
 import Avatar from '../../images/avatar.svg'
+import ToggleSwitch from '../ToggleSwitch/ToggleSwitch'
 
 const Header = ({ onCreateModal }) => {
   const weatherCity = 'Redondo Beach (USA)'
@@ -20,6 +21,7 @@ const Header = ({ onCreateModal }) => {
         </div>
       </div>
       <div className='header__logo'>
+        <ToggleSwitch />
         <div>
           <button
             type='text'
