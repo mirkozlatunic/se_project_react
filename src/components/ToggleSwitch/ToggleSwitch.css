@@ -2,6 +2,7 @@
   display: flex;
   position: relative;
   align-items: center;
+  transition: background-color 0.2s;
 }
 
 .switch__box {
@@ -20,6 +21,7 @@
   text-align: center;
   cursor: pointer;
   position: absolute;
+  transition: 0.2s;
 }
 
 .switch__slider-F {
@@ -34,12 +36,22 @@
   position: absolute;
   left: 13px;
   color: rgba(0, 0, 0, 0.5);
+  font-family: Cabinet Grotesk;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .switch__temp-F {
   position: absolute;
   left: 42px;
   color: rgba(0, 0, 0, 0.5);
+  font-family: Cabinet Grotesk;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .switch__active {
