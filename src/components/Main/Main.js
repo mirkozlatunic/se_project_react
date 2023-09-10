@@ -7,7 +7,6 @@ import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTemperature
 
 function Main({ weatherTemp, onSelectCard }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext)
-  console.log(currentTemperatureUnit)
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999
   const weatherType = useMemo(() => {
     if (temp >= 86) {

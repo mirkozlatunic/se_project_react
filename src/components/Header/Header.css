@@ -51,6 +51,12 @@
   font-style: normal;
   font-weight: 700;
   line-height: 1.2;
+  text-decoration: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.header__name:hover {
+  opacity: 0.4;
 }
 
 .header__avatar {

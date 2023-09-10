@@ -1,12 +1,20 @@
 .modal__container-image {
-  max-width: 498px;
-  max-height: 610px;
   width: 100%;
   height: 100%;
 }
 
 .modal__close-button-white {
   background-image: url(../../images/Modal-Close-Button-white.svg);
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
 }
 
 .modal__image-preview {
@@ -36,6 +44,21 @@
   margin-bottom: 32px;
 }
 
+.modal__delete-button {
+  position: absolute;
+  bottom: 68px;
+  right: 32px;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ff4d00;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 555px) {
   .modal__container-image {
     max-width: 90vw;
@@ -51,10 +74,18 @@
   .modal__container-image {
     max-height: 500px;
   }
+
+  .modal__delete-button {
+    bottom: 34px;
+  }
 }
 
 @media screen and (max-width: 375px) {
   .modal__container-image {
     max-height: 440px;
+  }
+
+  .modal__delete-button {
+    bottom: 54px;
   }
 }
