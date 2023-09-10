@@ -26,13 +26,13 @@ export const postNewClothingItem = (newItem) => {
     body: JSON.stringify({
       name: newItem.name,
       weather: newItem.weather,
-      link: newItem.imageUrl,
+      link: newItem.link,
     }),
   }).then(checkResponse)
 }
 
-export const deleteClothingItems = (id) => {
-  return fetch(`${baseUrl}/items/${id}`, {
+export const deleteClothingItems = (selectedCard) => {
+  return fetch(`${baseUrl}/items/${selectedCard._id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

@@ -2,7 +2,7 @@ import './ItemModal.css'
 
 const ItemModal = ({ selectedCard, onClose, onDeleteItem }) => {
   const handleDeleteItemSubmit = () => {
-    onDeleteItem(selectedCard.id)
+    onDeleteItem(selectedCard)
   }
   return (
     <div className={'modal'}>
@@ -19,12 +19,12 @@ const ItemModal = ({ selectedCard, onClose, onDeleteItem }) => {
         />
         <h3 className='modal__item-name'>{selectedCard.name}</h3>
         <div className='modal__weather-type'>
-          Weather type: {selectedCard.weatherType}
+          Weather type: {selectedCard.weather}
         </div>
         <button
           type='button'
           className='modal__delete-button'
-          onClick={handleDeleteItemSubmit}
+          onClick={() => handleDeleteItemSubmit(selectedCard)}
         >
           Delete Item
         </button>

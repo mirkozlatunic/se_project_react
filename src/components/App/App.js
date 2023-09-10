@@ -56,16 +56,14 @@ function App() {
       weather: values.weatherType,
     }
     postNewClothingItem(newItem)
-      .then((res) => {
-        console.log(res)
-        setNewClothingItem([res, ...clothingItems])
+      .then((item) => {
+        setNewClothingItem([item, ...clothingItems])
         handleCloseModal()
       })
       .catch(console.error)
   }
 
   const handleDeleteItemSubmit = (selectedCard) => {
-    console.log(selectedCard)
     deleteClothingItems(selectedCard)
       .then((res) => {
         const newClothingItems = clothingItems.filter((cards) => {
