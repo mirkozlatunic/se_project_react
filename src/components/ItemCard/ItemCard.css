@@ -1,6 +1,5 @@
 .card__section {
   margin-top: 40px;
-  min-height: 100vh;
 }
 
 .card__section-title {
@@ -15,7 +14,6 @@
 .card__name {
   position: absolute;
   top: 18px;
-  right: 39%;
   margin: 0;
   text-align: center;
   padding: 0 12px;
@@ -31,10 +29,12 @@
 
 .card__element {
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .card__image {
-  width: 328px;
+  width: 323px;
   height: 328px;
   border-radius: 30px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -43,8 +43,8 @@
 .card__items {
   display: flex;
   flex-wrap: wrap;
-  gap: 17px;
-  justify-content: center;
+  flex-direction: row;
+  gap: 16px;
   margin-top: 34px;
 }
 

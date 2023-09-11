@@ -116,7 +116,7 @@ function App() {
       >
         <Header
           onCreateModal={handleCreateModal}
-          temp={temp}
+          weatherTemp={temp}
           weatherLocation={weatherLocation}
         />
         <Switch>
