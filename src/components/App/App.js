@@ -52,12 +52,12 @@ function App() {
   const handleAddItemSubmit = (values) => {
     const newItem = {
       name: values.name,
-      imageUrl: values.link,
+      link: values.link,
       weather: values.weatherType,
     }
     postNewClothingItem(newItem)
       .then((item) => {
-        setNewClothingItem([item, ...clothingItems])
+        setClothingItems([item, ...clothingItems])
         handleCloseModal()
       })
       .catch(console.error)
