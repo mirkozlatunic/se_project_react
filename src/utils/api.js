@@ -1,7 +1,7 @@
 import React from 'react'
 import { baseUrl, headers } from './constants'
 
-const checkResponse = (res) => {
+export const checkResponse = (res) => {
   if (res.ok) {
     Promise.resolve('Promise Resolved')
     return res.json()
