@@ -38,4 +38,6 @@ Profile Page
 
 # GitHub Page
 
+- [Link to the Github Page](https://mirkozlatunic.github.io/se_project_react/)
+
 **Created By [Mirko Zlatunic](https://github.com/mirkozlatunic)**
