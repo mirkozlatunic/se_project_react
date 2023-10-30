@@ -253,6 +253,7 @@ function App() {
             handleCloseModal={handleCloseModal}
             onSignUp={handleSignUp}
             onDeleteItem={handleDeleteItemSubmit}
+            onLogInModal={handleLoginModal}
           />
         )}
         {activeModal === "login" && (
