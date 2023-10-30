@@ -24,7 +24,7 @@
 }
 
 .modal__item-name {
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -34,7 +34,7 @@
 }
 
 .modal__weather-type {
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -57,6 +57,19 @@
   border: none;
   background: transparent;
   cursor: pointer;
+}
+
+.modal_delete-button_visible {
+  visibility: visible;
+}
+
+.modal_delete-button_hidden {
+  visibility: hidden;
+}
+
+.modal_delete-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 555px) {

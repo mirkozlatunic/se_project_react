@@ -7,16 +7,16 @@ The idea of the application is pretty simple - we make a call to an API, which t
 ## Screeshot
 
 Home Page
-![WTWR Home Page](./src/images/home-page.png 'Home Page')
+![WTWR Home Page](./src/images/home-page.png "Home Page")
 
 Add new Card
-![Add new Card](./src/images/add-card.png 'Add new Card')
+![Add new Card](./src/images/add-card.png "Add new Card")
 
 Preview Card
-![Preview Card](./src/images/preview-card.png 'Preview Card')
+![Preview Card](./src/images/preview-card.png "Preview Card")
 
 Profile Page
-![Profile Page](./src/images/profile-page.png 'Profile Page')
+![Profile Page](./src/images/profile-page.png "Profile Page")
 
 ## Figma
 
@@ -35,6 +35,10 @@ Profile Page
 - GitHub
 - Fetch API
 - React
+
+## Backend Repository Link:
+
+- [Backend Repository Link](https://github.com/mirkozlatunic/se_project_express)
 
 # GitHub Page
 

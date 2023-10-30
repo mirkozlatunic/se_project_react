@@ -4,7 +4,7 @@
 
 .card__section-title {
   margin: 0px;
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -20,7 +20,7 @@
   border-radius: 4px;
   color: rgba(0, 0, 0, 0.6);
   background-color: #fff;
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -38,6 +38,24 @@
   height: 328px;
   border-radius: 30px;
   border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.card_like-button {
+  position: relative;
+  width: 18px;
+  height: 15px;
+}
+
+.card_like-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.card_like-button_hidden {
+  visibility: hidden;
+}
+
+.card_like-button_visible {
+  visibility: visible;
 }
 
 .card__items {

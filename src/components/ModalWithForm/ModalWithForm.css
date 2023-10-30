@@ -41,14 +41,14 @@
 }
 
 .modal__title {
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 1.1;
   margin-top: 28px;
   margin-left: 28px;
-  margin: 28px 28px 0px 28px;
+  margin: 28px 28px 24px 28px;
 }
 
 .modal__form {
@@ -66,16 +66,17 @@
   display: flex;
   flex-direction: column;
   color: #000;
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 1.1;
+  margin-bottom: 24px;
 }
 
 .modal__input {
   color: rgba(0, 0, 0, 0.5);
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -87,7 +88,7 @@
 }
 
 .modal__select-weather {
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -101,7 +102,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -124,7 +125,7 @@
 }
 
 .modal__radio-button-label {
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -141,7 +142,7 @@
   width: 124px;
   height: 36px;
   color: #fff;
-  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -161,4 +162,20 @@
 .modal__submit-button:disabled {
   background-color: rgba(0, 0, 0, 0.3);
   cursor: default;
+}
+
+.modal__alt-submit-button {
+  color: rgba(0, 0, 0, 0.5);
+  font-family: Cabinet Grotesk;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  border: none;
+  background-color: transparent;
+}
+
+.modal_alt-submit-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
