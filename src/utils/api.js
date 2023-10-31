@@ -17,7 +17,8 @@ const getClothingItems = () => {
   }).then(checkResponse);
 };
 
-const postNewClothingItem = ({ name, imageUrl, weather, token }) => {
+const postNewClothingItem = ({ name, imageUrl, weather }) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
