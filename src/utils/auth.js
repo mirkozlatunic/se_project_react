@@ -26,7 +26,6 @@ const login = ({ email, password }) => {
 
 // Check Token
 const getContent = ({ token }) => {
-  debugger;
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {

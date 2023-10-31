@@ -57,9 +57,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(151, 193, 255, 0.795);
-  font-family: "Cabinet Grotesk", sans-serif;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  color: #fff;
   font-size: 20px;
+  font-style: normal;
   font-weight: 700;
-  margin-right: 20px;
+  line-height: normal;
 }

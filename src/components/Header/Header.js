@@ -13,8 +13,8 @@ const Header = ({
   loggedIn,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  const avatar = currentUser ? currentUser.avatar : "";
-  const name = currentUser ? currentUser.name : "";
+  const avatar = currentUser ? currentUser?.avatar : "";
+  const name = currentUser ? currentUser?.name : "";
   const showAvatar = avatar !== "" ? true : false;
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -36,7 +36,7 @@ const Header = ({
       <div className="header__logo">
         <ToggleSwitch />
         {loggedIn ? (
-          <div>
+          <div className="header__avatar-logo">
             <button
               type="text"
               onClick={onCreateModal}
@@ -45,15 +45,14 @@ const Header = ({
               + Add clothes
             </button>
             <Link className="header__name" to="/profile">
-              {currentUser.name}
+              {currentUser?.name}
             </Link>
-            debugger;
             <div>
               {showAvatar ? (
                 <img src={avatar} alt="avatar" className="header__avatar" />
               ) : (
                 <p className="sidebar__avatar-placeholder">
-                  {name[0]?.toUpperCase()}
+                  {/* {name[0]?.toUpperCase()} */}T
                 </p>
               )}
             </div>

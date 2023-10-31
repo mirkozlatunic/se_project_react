@@ -63,6 +63,11 @@
   padding-left: 12px;
   max-width: 40px;
   max-height: 40px;
+  flex-shrink: 0;
+}
+
+.header__avatar-logo {
+  display: flex;
 }
 
 .header__registration {

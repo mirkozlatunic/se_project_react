@@ -132,7 +132,7 @@ function App() {
 
   const handleAddItemSubmit = (item) => {
     api
-      .addItem(item)
+      .postNewClothingItem(item)
       .then((newItem) => {
         setClothingItems([newItem.data, ...clothingItems]);
         handleCloseModal();
