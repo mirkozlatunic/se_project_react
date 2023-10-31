@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ handleCloseModal, onLogInModal, onSignUp }) => {
+const LoginModal = ({ handleCloseModal, onSignUpModal, onLogin }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -17,7 +17,7 @@ const LoginModal = ({ handleCloseModal, onLogInModal, onSignUp }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignUp(email, password);
+    onLogin({ email, password });
   };
 
   return (
@@ -27,7 +27,7 @@ const LoginModal = ({ handleCloseModal, onLogInModal, onSignUp }) => {
       onClose={handleCloseModal}
       altText="or Register"
       onSubmit={handleSubmit}
-      altSubmit={onSignUp}
+      altSubmit={onSignUpModal}
       isEnabled={isEnabled}
     >
       <label className="modal__label">

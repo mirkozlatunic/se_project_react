@@ -4,7 +4,6 @@ const baseUrl = "http://localhost:3001";
 
 // Sign up
 const createUser = ({ name, avatar, email, password }) => {
-  debugger;
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
@@ -26,7 +25,8 @@ const login = ({ email, password }) => {
 };
 
 // Check Token
-const getContent = (token) => {
+const getContent = ({ token }) => {
+  debugger;
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
