@@ -17,7 +17,7 @@ const getClothingItems = () => {
   }).then(checkResponse);
 };
 
-const postNewClothingItem = ({ name, imageUrl, weather }) => {
+const postNewClothingItem = ({ name, link, weatherType }) => {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
@@ -25,7 +25,7 @@ const postNewClothingItem = ({ name, imageUrl, weather }) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, imageUrl, weather }),
+    body: JSON.stringify({ name, link, weatherType }),
   }).then(checkResponse);
 };
 
