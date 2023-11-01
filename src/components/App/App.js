@@ -50,6 +50,14 @@ function App() {
     setActiveModal("signup");
   };
 
+  const handleEditProfileModal = () => {
+    setActiveModal("editProfile");
+  };
+
+  const handleLoginModal = () => {
+    setActiveModal("login");
+  };
+
   const handleSignUp = (user) => {
     auth
       .createUser(user)
@@ -64,10 +72,6 @@ function App() {
       .catch(console.error);
   };
 
-  const handleLoginModal = () => {
-    setActiveModal("login");
-  };
-
   const handleLogIn = (user) => {
     auth
       .login(user)
@@ -78,10 +82,6 @@ function App() {
         handleCloseModal();
       })
       .catch(console.error);
-  };
-
-  const handleEditProfileModal = () => {
-    setActiveModal("editProfile");
   };
 
   const handleUserChanges = (editUser) => {
@@ -142,7 +142,7 @@ function App() {
 
   const handleDeleteItemSubmit = (card, token) => {
     api
-      .removeItem(card._id, token)
+      .deleteClothingItems(card._id, token)
       .then(() => {
         setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
         handleCloseModal();
