@@ -13,8 +13,8 @@ const Header = ({
   loggedIn,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  const avatar = currentUser ? currentUser?.avatar : "";
-  const name = currentUser ? currentUser?.name : "";
+  const avatar = currentUser ? currentUser.avatar : "";
+  const name = currentUser ? currentUser.name : "";
   const showAvatar = avatar !== "" ? true : false;
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -45,14 +45,14 @@ const Header = ({
               + Add clothes
             </button>
             <Link className="header__name" to="/profile">
-              {currentUser?.name}
+              {name}
             </Link>
             <div>
               {showAvatar ? (
                 <img src={avatar} alt="avatar" className="header__avatar" />
               ) : (
                 <p className="sidebar__avatar-placeholder">
-                  {/* {name[0]?.toUpperCase()} */}T
+                  {name[0]?.toUpperCase()}
                 </p>
               )}
             </div>

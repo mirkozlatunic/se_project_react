@@ -109,8 +109,8 @@ function App() {
 
           .removeCardLike(id, user, token)
           .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard.data : c))
+            setClothingItems((clothingItems) =>
+              clothingItems.map((c) => (c._id === id ? updatedCard.data : c))
             );
           })
           .catch(console.error)
@@ -218,6 +218,7 @@ function App() {
               weatherTemp={temp}
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
+              loggedIn={loggedIn}
               onCardLike={handleLikeClick}
             />
           </Route>
@@ -225,10 +226,11 @@ function App() {
             <Profile
               onCreateModal={handleCreateModal}
               onSelectCard={handleSelectedCard}
-              cards={clothingItems}
+              clothingItems={clothingItems}
               onEditProfile={handleEditProfileModal}
               onLogOut={handleLogOut}
               onCardLike={handleLikeClick}
+              handleLikeClick={handleLikeClick}
             />
           </ProtectedRoute>
         </Switch>
@@ -246,6 +248,7 @@ function App() {
             selectedCard={selectedCard}
             onClose={handleCloseModal}
             onDeleteItem={handleDeleteItemSubmit}
+            currentUser={currentUser}
           />
         )}
         {activeModal === "signup" && (
@@ -254,6 +257,7 @@ function App() {
             onSignUp={handleSignUp}
             onDeleteItem={handleDeleteItemSubmit}
             onLogInModal={handleLoginModal}
+            setActiveModal={setActiveModal}
           />
         )}
         {activeModal === "login" && (
@@ -261,12 +265,15 @@ function App() {
             handleCloseModal={handleCloseModal}
             onLogin={handleLogIn}
             onSignUpModal={handleSignupModal}
+            setActiveModal={setActiveModal}
           />
         )}
         {activeModal === "editProfile" && (
           <EditProfileModal
             handleCloseModal={handleCloseModal}
             onUserChanges={handleUserChanges}
+            currentUser={currentUser}
+            setActiveModal={setActiveModal}
           />
         )}
       </CurrentUserContext.Provider>

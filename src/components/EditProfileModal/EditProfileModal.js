@@ -2,10 +2,13 @@ import React, { useState, useContext } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const EditProfileModal = ({ handleCloseModal, onUserChanges }) => {
+const EditProfileModal = ({
+  handleCloseModal,
+  onSubmit,
+  isLoading,
+  isOpen,
+}) => {
   const currentUser = useContext(CurrentUserContext);
-  const _id = currentUser._id;
-  const token = localStorage.getItem("jwt");
 
   const [name, setName] = useState(currentUser.name);
   const handleNameChange = (e) => {
@@ -17,21 +20,19 @@ const EditProfileModal = ({ handleCloseModal, onUserChanges }) => {
     setavatar(e.target.value);
   };
 
-  const isEnabled = name.length > 0 && avatar.length > 0;
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    onUserChanges({ name, avatar, _id, token });
+    onSubmit({ name: name, avatar: avatar });
   };
 
   return (
     <ModalWithForm
-      title="Change profile data"
-      buttonText="Save changes"
+      buttonText={isLoading ? "Submitting Changes..." : "Submit Changes"}
       onClose={handleCloseModal}
       onSubmit={handleSubmit}
-      isEnabled={isEnabled}
+      isOpen={isOpen}
     >
+      <h2>Change profile Data</h2>
       <label className="modal__label">
         Name
         <input
@@ -40,6 +41,7 @@ const EditProfileModal = ({ handleCloseModal, onUserChanges }) => {
           name="name"
           value={name}
           onChange={handleNameChange}
+          placeholder={name}
           minLength="1"
           maxLength="30"
         ></input>
@@ -52,6 +54,7 @@ const EditProfileModal = ({ handleCloseModal, onUserChanges }) => {
           name="link"
           value={avatar}
           onChange={handleAvatarChange}
+          placeholder={avatar}
           minLength="1"
         ></input>
       </label>

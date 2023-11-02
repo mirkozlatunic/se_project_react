@@ -66,3 +66,37 @@
   font-weight: 700;
   line-height: normal;
 }
+
+.sidebar__edit-button {
+  color: #000;
+  border: none;
+  background-color: transparent;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  min-width: 135px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.sidebar__edit-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.sidebar__logout-button {
+  color: #000;
+  border: none;
+  background-color: transparent;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  min-width: 135px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.sidebar__logout-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}

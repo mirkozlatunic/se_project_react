@@ -40,22 +40,29 @@
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.card_like-button {
+.card__like-button {
+  background: transparent url(../../images/liked_button.svg) center no-repeat;
   position: relative;
   width: 18px;
   height: 15px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  background-repeat: off;
+  position: relative;
+  top: 5px;
+  border: none;
 }
 
 .card_like-button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
-.card_like-button_hidden {
-  visibility: hidden;
-}
 
-.card_like-button_visible {
-  visibility: visible;
+.card__like-button-active {
+  background-image: url("../../images/liked_button.svg") center no-repeat;
+  background-repeat: off;
+  border: none;
 }
 
 .card__items {
@@ -64,6 +71,15 @@
   flex-direction: row;
   gap: 16px;
   margin-top: 34px;
+}
+
+.card__info {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  flex-direction: row;
+  top: 16px;
+  align-items: center;
 }
 
 @media screen and (max-width: 899px) {

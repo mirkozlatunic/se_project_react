@@ -10,7 +10,7 @@ const ItemModal = ({ selectedCard, onClose, onDeleteItem }) => {
   const token = localStorage.getItem("jwt");
 
   // Checking if the current user is the owner of the current clothing item
-  const isOwn = selectedCard.owner === currentUser._id;
+  const isOwn = selectedCard.owner === currentUser?._id;
 
   // Creating a variable which you'll then set in `className` for the delete button
   const modalDeleteClass = `modal_delete-button ${

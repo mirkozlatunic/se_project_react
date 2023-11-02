@@ -7,12 +7,15 @@ const ClothesSection = ({
   cards,
   onCreateModal,
   onSelectCard,
+  selectedCard,
+  setSelectedCard,
   onCardLikeClick,
   clothingItems,
+  loggedIn,
 }) => {
   const currentUser = useContext(CurrentUserContext);
   const filteredCards = cards.filter((item) => {
-    return item.owner === currentUser._id;
+    return item.owner === currentUser?._id;
   });
   return (
     <div className="clothes__section">
@@ -34,6 +37,11 @@ const ClothesSection = ({
               item={item}
               onSelectCard={onSelectCard}
               onCardLikeClick={onCardLikeClick}
+              selectedCard={selectedCard}
+              onClick={() => {
+                setSelectedCard(item);
+                loggedIn = { loggedIn };
+              }}
             />
           );
         })}

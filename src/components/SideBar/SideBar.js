@@ -2,12 +2,11 @@ import React, { useContext } from "react";
 import "./SideBar.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function SideBar({ onEditProfile, onLogOut }) {
+function SideBar({ handleEditProfileModal, handleLogOut }) {
   const currentUser = useContext(CurrentUserContext);
-  const avatarImage = currentUser.avatar;
-  const avatarImageExist =
-    currentUser.avatar !== undefined || currentUser.avatar !== null;
-  console.log(avatarImageExist);
+  const avatarImage = currentUser ? currentUser.avatar : undefined;
+  const name = currentUser ? currentUser.name : "";
+  const avatarImageExist = avatarImage !== "" ? true : null;
   return (
     <section className="sidebar">
       <div className="sidebar__user-info">
@@ -18,18 +17,18 @@ function SideBar({ onEditProfile, onLogOut }) {
             className="sidebar__avatar-image"
           />
         ) : (
-          <h3 className="sidebar__avatar-letter">
-            {currentUser.name.charAt(0).toUpperCase()}
-          </h3>
+          <p className="sidebar__avatar-placeholder">
+            {name[0]?.toUpperCase()}
+          </p>
         )}
-        <h3 className="sidebar__avatar-name">{currentUser.name}</h3>
+        <h3 className="sidebar__avatar-name">{name}</h3>
       </div>
-      <h3 className="sidebar__options" onClick={onEditProfile}>
+      <button className="sidebar__edit-button" onClick={handleEditProfileModal}>
         Change profile data
-      </h3>
-      <h3 className="sidebar__options" onClick={onLogOut}>
+      </button>
+      <button className="sidebar__logout-button" onClick={handleLogOut}>
         Log out
-      </h3>
+      </button>
     </section>
   );
 }
