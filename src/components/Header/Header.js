@@ -42,10 +42,10 @@ const Header = ({
               onClick={onCreateModal}
               className="header__add-button"
             >
-              + Add clothes
+              + Add Clothes
             </button>
             <Link className="header__name" to="/profile">
-              {name}
+              {name}Mirko Zlatunic
             </Link>
             <div>
               {showAvatar ? (

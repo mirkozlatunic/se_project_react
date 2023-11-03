@@ -17,7 +17,7 @@ const getClothingItems = () => {
   }).then(checkResponse);
 };
 
-const postNewClothingItem = ({ name, link, weatherType }) => {
+const postNewClothingItem = ({ name, imageUrl, weather }) => {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
@@ -25,7 +25,7 @@ const postNewClothingItem = ({ name, link, weatherType }) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, link, weatherType }),
+    body: JSON.stringify({ name, imageUrl, weather }),
   }).then(checkResponse);
 };
 
@@ -39,25 +39,36 @@ const deleteClothingItems = (id, token) => {
   }).then(checkResponse);
 };
 
-const removeCardLike = (id, user, token) => {
+const editUserProfile = ({ name, avatar }) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+};
+
+const removeCardLike = (id) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ user }),
   }).then(checkResponse);
 };
 
-const addCardLike = (id, user, token) => {
+const addCardLike = (id) => {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ user }),
   }).then(checkResponse);
 };
 
@@ -68,6 +79,7 @@ const api = {
   removeCardLike,
   addCardLike,
   checkResponse,
+  editUserProfile,
 };
 
 export default api;

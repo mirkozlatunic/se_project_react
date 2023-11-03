@@ -9,7 +9,7 @@ const ClothesSection = ({
   onSelectCard,
   selectedCard,
   setSelectedCard,
-  onCardLikeClick,
+  onCardLike,
   clothingItems,
   loggedIn,
 }) => {
@@ -36,7 +36,7 @@ const ClothesSection = ({
               key={item?._id ?? item?.id}
               item={item}
               onSelectCard={onSelectCard}
-              onCardLikeClick={onCardLikeClick}
+              onCardLike={onCardLike}
               selectedCard={selectedCard}
               onClick={() => {
                 setSelectedCard(item);

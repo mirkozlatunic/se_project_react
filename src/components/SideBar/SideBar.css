@@ -8,6 +8,7 @@
   display: flex;
   width: 229px;
   align-items: center;
+  margin-bottom: 24px;
 }
 
 .sidebar__avatar-image {
@@ -50,9 +51,8 @@
 }
 
 .sidebar__avatar-placeholder {
-  margin: 5px;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -67,16 +67,25 @@
   line-height: normal;
 }
 
+.sidebar__buttons {
+  display: flex;
+  position: absolute;
+  left: 40px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
 .sidebar__edit-button {
   color: #000;
   border: none;
   background-color: transparent;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
-  min-width: 135px;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-bottom: 8px;
+  padding: 0;
 }
 
 .sidebar__edit-button:hover {
@@ -89,11 +98,11 @@
   border: none;
   background-color: transparent;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
-  min-width: 135px;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  padding: 0;
 }
 
 .sidebar__logout-button:hover {

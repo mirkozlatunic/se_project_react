@@ -10,6 +10,7 @@ const Profile = ({
   handleLogOut,
   handleEditProfileModal,
   loggedIn,
+  onCardLike,
 }) => {
   return (
     <section className="profile">
@@ -25,6 +26,7 @@ const Profile = ({
           cards={clothingItems}
           onSelectCard={onSelectCard}
           loggedIn={loggedIn}
+          onCardLike={onCardLike}
         />
       </div>
     </section>

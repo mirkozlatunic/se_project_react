@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, isLoading }) => {
+const AddItemModal = ({
+  handleCloseModal,
+  handleAddItemSubmit,
+  isOpen,
+  isLoading,
+}) => {
   const [name, setName] = useState("");
-  const [link, setUrl] = useState("");
-  const [weatherType, setWeatherType] = useState("");
+  const [imageUrl, setUrl] = useState("");
+  const [weather, setWeatherType] = useState("");
 
   useEffect(() => {
     if (!isOpen) {
@@ -28,11 +33,8 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, isLoading }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem({ name, link, weatherType });
+    handleAddItemSubmit({ name, imageUrl, weather });
   };
-
-  const isEnabled =
-    name.length > 0 && link.length > 0 && weatherType.length > 0;
 
   return (
     <ModalWithForm
@@ -40,7 +42,6 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, isLoading }) => {
       onClose={handleCloseModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
-      isEnabled={isEnabled}
       buttonText={isLoading ? "Saving..." : "Add Garment"}
     >
       <div className="modal__text-inputs">
@@ -65,8 +66,8 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, isLoading }) => {
             minLength="1"
             maxLength="999"
             className="modal__input"
-            placeholder="Image"
-            value={link}
+            placeholder="Image URL"
+            value={imageUrl}
             onChange={handleUrlChange}
           />
         </label>

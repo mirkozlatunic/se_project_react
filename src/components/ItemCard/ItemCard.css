@@ -12,9 +12,7 @@
 }
 
 .card__name {
-  position: absolute;
-  top: 18px;
-  margin: 0;
+  margin-right: 16px;
   text-align: center;
   padding: 0 12px;
   border-radius: 4px;
@@ -41,16 +39,12 @@
 }
 
 .card__like-button {
-  background: transparent url(../../images/liked_button.svg) center no-repeat;
-  position: relative;
+  background: transparent url(../../images/unliked_button.svg) center no-repeat;
+  background-size: cover;
   width: 18px;
-  height: 15px;
-  border: none;
+  height: 16px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  background-repeat: off;
-  position: relative;
-  top: 5px;
   border: none;
 }
 
@@ -61,8 +55,11 @@
 
 .card__like-button-active {
   background-image: url("../../images/liked_button.svg") center no-repeat;
-  background-repeat: off;
   border: none;
+}
+
+.card__like-button-hidden {
+  visibility: hidden;
 }
 
 .card__items {

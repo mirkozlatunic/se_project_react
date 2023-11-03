@@ -46,6 +46,7 @@
 .header__name {
   color: #000;
   padding-left: 20px;
+  padding-right: 12px;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-size: 20px;
   font-style: normal;
@@ -60,14 +61,15 @@
 }
 
 .header__avatar {
-  padding-left: 12px;
   max-width: 40px;
   max-height: 40px;
-  flex-shrink: 0;
+  border: rgba(0, 0, 0, 0.5) 1px solid;
+  border-radius: 50%;
 }
 
 .header__avatar-logo {
   display: flex;
+  align-items: center;
 }
 
 .header__registration {

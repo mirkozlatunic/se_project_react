@@ -4,14 +4,14 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 // import ModalWithForm from '../ModalWithForm/ModalWithForm'
 import ItemModal from "../ItemModal/ItemModal";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   getForcastWeather,
   parseWeatherData,
   parseLocationData,
 } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import api from "../../utils/api";
@@ -20,7 +20,6 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useHistory } from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
@@ -33,7 +32,9 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const [token, setToken] = React.useState("");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -102,24 +103,23 @@ function App() {
     history.push("/");
   };
 
-  const handleLikeClick = (id, isLiked, user) => {
-    const token = localStorage.getItem("jwt");
+  const handleLikeClick = (_id, isLiked, user) => {
     isLiked
       ? api
 
-          .removeCardLike(id, user, token)
+          .removeCardLike(_id)
           .then((updatedCard) => {
-            setClothingItems((clothingItems) =>
-              clothingItems.map((c) => (c._id === id ? updatedCard.data : c))
+            setClothingItems((cards) =>
+              cards.map((card) => (card._id === _id ? updatedCard.data : card))
             );
           })
           .catch(console.error)
       : api
 
-          .addCardLike(id, user, token)
+          .addCardLike(_id)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard.data : c))
+              cards.map((card) => (card._id === _id ? updatedCard.data : card))
             );
           })
           .catch(console.error);
@@ -148,6 +148,15 @@ function App() {
         handleCloseModal();
       })
       .catch(console.error);
+  };
+
+  const handleEditProfile = (data) => {
+    setIsLoading(true);
+    api
+      .editUserProfile(data)
+      .then((res) => setCurrentUser(res))
+      .then(() => handleCloseModal())
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -204,9 +213,14 @@ function App() {
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
     >
-      <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider
+        value={currentUser}
+        setLoggedIn={setLoggedIn}
+      >
         <Header
           onCreateModal={handleCreateModal}
+          temp={temp}
+          user={currentUser}
           onSignUpModal={handleSignupModal}
           onLogInModal={handleLoginModal}
           loggedIn={loggedIn}
@@ -219,7 +233,7 @@ function App() {
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
               loggedIn={loggedIn}
-              onCardLike={handleLikeClick}
+              onCardClick={handleLikeClick}
             />
           </Route>
           <ProtectedRoute path="/profile" loggedIn={loggedIn}>
@@ -229,7 +243,7 @@ function App() {
               clothingItems={clothingItems}
               onEditProfile={handleEditProfileModal}
               onLogOut={handleLogOut}
-              onCardLike={handleLikeClick}
+              onCardClick={handleLikeClick}
               handleLikeClick={handleLikeClick}
             />
           </ProtectedRoute>
@@ -239,8 +253,7 @@ function App() {
           <AddItemModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
-            onAddItem={handleAddItemSubmit}
-            onClose={handleCloseModal}
+            handleAddItemSubmit={handleAddItemSubmit}
           />
         )}
         {activeModal === "preview" && (
@@ -248,13 +261,13 @@ function App() {
             selectedCard={selectedCard}
             onClose={handleCloseModal}
             onDeleteItem={handleDeleteItemSubmit}
-            currentUser={currentUser}
           />
         )}
         {activeModal === "signup" && (
           <RegisterModal
             handleCloseModal={handleCloseModal}
             onSignUp={handleSignUp}
+            isOpen={activeModal === "signup"}
             onDeleteItem={handleDeleteItemSubmit}
             onLogInModal={handleLoginModal}
             setActiveModal={setActiveModal}
@@ -265,15 +278,18 @@ function App() {
             handleCloseModal={handleCloseModal}
             onLogin={handleLogIn}
             onSignUpModal={handleSignupModal}
-            setActiveModal={setActiveModal}
+            isOpen={activeModal === "login"}
           />
         )}
         {activeModal === "editProfile" && (
           <EditProfileModal
             handleCloseModal={handleCloseModal}
+            isOpen={activeModal === "edit"}
             onUserChanges={handleUserChanges}
             currentUser={currentUser}
+            isLoading={isLoading}
             setActiveModal={setActiveModal}
+            onSubmit={handleEditProfile}
           />
         )}
       </CurrentUserContext.Provider>
