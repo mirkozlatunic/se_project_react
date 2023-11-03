@@ -13,8 +13,8 @@ function Main({
   loggedIn,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
-  const getWeatherType = (temp) => {
+  const temp = weatherTemp.temperature?.[currentTemperatureUnit] || 999;
+  const getWeatherType = () => {
     if (currentTemperatureUnit === "F") {
       if (temp >= 86) {
         return "hot";
@@ -23,21 +23,13 @@ function Main({
       } else if (temp <= 65) {
         return "cold";
       }
-    } else {
-      if (temp >= 30) {
-        return "hot";
-      } else if (temp >= 18.9 && temp <= 29.4) {
-        return "warm";
-      } else if (temp <= 18.3) {
-        return "cold";
-      }
     }
   };
 
   const weatherType = getWeatherType();
 
-  const filteredCards = clothingItems?.filter((item) => {
-    return item.weather?.toLowerCase() === weatherType;
+  const filteredCards = clothingItems.filter((item) => {
+    return item.weather.toLowerCase() === weatherType;
   });
 
   return (
