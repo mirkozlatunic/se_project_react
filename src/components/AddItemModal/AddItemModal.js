@@ -36,6 +36,9 @@ const AddItemModal = ({
     handleAddItemSubmit({ name, imageUrl, weather });
   };
 
+  const isEnabled =
+    name.length > 0 && imageUrl.length > 0 && weather.length > 0;
+
   return (
     <ModalWithForm
       title="New Garment"
@@ -43,6 +46,7 @@ const AddItemModal = ({
       isOpen={isOpen}
       onSubmit={handleSubmit}
       buttonText={isLoading ? "Saving..." : "Add Garment"}
+      isEnabled={isEnabled}
     >
       <div className="modal__text-inputs">
         <label className="modal__label">
