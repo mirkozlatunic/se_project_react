@@ -50,9 +50,9 @@ const editUserProfile = ({ name, avatar }) => {
   }).then(checkResponse);
 };
 
-const removeCardLike = (id) => {
+const removeCardLike = (itemId) => {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -61,9 +61,9 @@ const removeCardLike = (id) => {
   }).then(checkResponse);
 };
 
-const addCardLike = (id) => {
+const addCardLike = (itemId) => {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

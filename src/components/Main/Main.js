@@ -9,7 +9,7 @@ function Main({
   weatherTemp,
   onSelectCard,
   clothingItems,
-  onCardClick,
+  onCardLike,
   loggedIn,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
@@ -23,6 +23,14 @@ function Main({
       } else if (temp <= 65) {
         return "cold";
       }
+    }
+
+    if (temp >= 30) {
+      return "hot";
+    } else if (temp >= 19 && temp <= 29) {
+      return "warm";
+    } else if (temp <= 18) {
+      return "cold";
     }
   };
 
@@ -50,7 +58,7 @@ function Main({
               key={item._id || item.id}
               item={item}
               onSelectCard={onSelectCard}
-              onCardClick={onCardClick}
+              onCardLike={onCardLike}
               loggedIn={loggedIn}
             />
           ))}

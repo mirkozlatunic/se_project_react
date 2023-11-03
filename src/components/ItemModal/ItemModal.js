@@ -2,20 +2,16 @@ import "./ItemModal.css";
 import React, { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const ItemModal = ({ selectedCard, onClose, onDeleteItem }) => {
-  const handleDeleteItemSubmit = () => {
-    onDeleteItem(selectedCard);
-  };
+const ItemModal = ({ selectedCard, onClose, handleDeleteItemSubmit }) => {
   const userContext = useContext(CurrentUserContext);
-  const token = localStorage.getItem("jwt");
-  const userData = userContext ? userContext : { name: "n/a", avatar: "" };
+  const currentUser = userContext ? userContext : { name: "n/a", avatar: "" };
 
   // Checking if the current user is the owner of the current clothing item
-  const isOwn = selectedCard.owner === userData._id;
+  const isOwn = selectedCard.owner === currentUser._id;
 
   // Creating a variable which you'll then set in `className` for the delete button
-  const modalDeleteClass = `modal_delete-button ${
-    isOwn ? "modal_delete-button_visible" : "modal_delete-button_hidden"
+  const itemDeleteButtonClassName = `modal__delete-button ${
+    isOwn ? "modal__delete-button_visible" : "modal__delete-button_hidden"
   }`;
   return (
     <div className={"modal"}>
@@ -36,8 +32,8 @@ const ItemModal = ({ selectedCard, onClose, onDeleteItem }) => {
         </div>
         <button
           type="button"
-          className={modalDeleteClass}
-          onClick={() => handleDeleteItemSubmit(selectedCard, token)}
+          className={itemDeleteButtonClassName}
+          onClick={handleDeleteItemSubmit}
         >
           Delete Item
         </button>

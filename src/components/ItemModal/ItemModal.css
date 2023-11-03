@@ -59,11 +59,11 @@
   cursor: pointer;
 }
 
-.modal_delete-button_visible {
+.modal__delete-button_visible {
   visibility: visible;
 }
 
-.modal_delete-button_hidden {
+.modal__delete-button_hidden {
   visibility: hidden;
 }
 

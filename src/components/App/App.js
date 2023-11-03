@@ -34,7 +34,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
-  const [token, setToken] = React.useState("");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -73,27 +72,59 @@ function App() {
       .catch(console.error);
   };
 
-  const handleLogIn = (user) => {
+  // const handleLogIn = (user) => {
+  //   auth
+  //     .login(user)
+  //     .then((res) => {
+  //       setCurrentUser(res.user);
+  //       localStorage.setItem("jwt", res.token);
+  //       setLoggedIn(true);
+  //       handleCloseModal();
+  //       history.push("/profile");
+  //     })
+  //     .catch(console.error);
+  // };
+
+  const handleLogIn = (email, password) => {
     auth
-      .login(user)
-      .then((res) => {
-        setCurrentUser(res.user);
-        localStorage.setItem("jwt", res.token);
-        setLoggedIn(true);
-        handleCloseModal();
+      .login(email, password)
+      .then((data) => {
+        console.log("API Response:", data);
+        if (data.token) {
+          localStorage.setItem("jwt", data.token);
+          console.log(data.token);
+
+          setLoggedIn(true);
+          setCurrentUser(data);
+          handleCloseModal();
+          history.push("/profile");
+        } else {
+          console.error("Login failed.");
+        }
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
-  const handleUserChanges = (editUser) => {
+  // const handleUserChanges = (editUser) => {
+  //   auth
+  //     .editProfile(editUser)
+  //     .then((newUser) => {
+  //       console.log(newUser);
+  //       setCurrentUser(newUser);
+  //       handleCloseModal();
+  //     })
+  //     .catch(console.error);
+  // };
+
+  const handleUserChanges = (data) => {
+    setIsLoading(true);
     auth
-      .editProfile(editUser)
-      .then((newUser) => {
-        console.log(newUser);
-        setCurrentUser(newUser);
-        handleCloseModal();
-      })
-      .catch(console.error);
+      .editProfile(data)
+      .then((res) => setCurrentUser(res))
+      .then(() => handleCloseModal())
+      .catch((err) => console.error(err));
   };
 
   const handleLogOut = () => {
@@ -104,22 +135,23 @@ function App() {
   };
 
   const handleLikeClick = (_id, isLiked, user) => {
+    const token = localStorage.getItem("jwt");
     isLiked
       ? api
 
-          .removeCardLike(_id)
+          .addCardLike(_id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((card) => (card._id === _id ? updatedCard.data : card))
+              cards.map((c) => (c._id === _id ? updatedCard : c))
             );
           })
           .catch(console.error)
       : api
 
-          .addCardLike(_id)
+          .removeCardLike(_id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((card) => (card._id === _id ? updatedCard.data : card))
+              cards.map((c) => (c._id === _id ? updatedCard : c))
             );
           })
           .catch(console.error);
@@ -233,7 +265,7 @@ function App() {
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
               loggedIn={loggedIn}
-              onCardClick={handleLikeClick}
+              onCardLike={handleLikeClick}
             />
           </Route>
           <ProtectedRoute path="/profile" loggedIn={loggedIn}>
@@ -243,8 +275,8 @@ function App() {
               clothingItems={clothingItems}
               onEditProfile={handleEditProfileModal}
               onLogOut={handleLogOut}
-              onCardClick={handleLikeClick}
-              handleLikeClick={handleLikeClick}
+              onCardLike={handleLikeClick}
+              loggedIn={loggedIn}
             />
           </ProtectedRoute>
         </Switch>
@@ -260,7 +292,7 @@ function App() {
           <ItemModal
             selectedCard={selectedCard}
             onClose={handleCloseModal}
-            onDeleteItem={handleDeleteItemSubmit}
+            handleDeleteItemSubmit={handleDeleteItemSubmit}
           />
         )}
         {activeModal === "signup" && (
@@ -268,7 +300,7 @@ function App() {
             handleCloseModal={handleCloseModal}
             onSignUp={handleSignUp}
             isOpen={activeModal === "signup"}
-            onDeleteItem={handleDeleteItemSubmit}
+            handleDeleteItemSubmit={handleDeleteItemSubmit}
             onLogInModal={handleLoginModal}
             setActiveModal={setActiveModal}
           />

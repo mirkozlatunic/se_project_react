@@ -23,7 +23,7 @@ const Profile = ({
       <div>
         <ClothesSection
           onCreateModal={onCreateModal}
-          cards={clothingItems}
+          clothingItems={clothingItems}
           onSelectCard={onSelectCard}
           loggedIn={loggedIn}
           onCardLike={onCardLike}
