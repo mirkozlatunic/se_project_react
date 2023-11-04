@@ -72,43 +72,19 @@ function App() {
       .catch(console.error);
   };
 
-  // const handleLogIn = (user) => {
-  //   auth
-  //     .login(user)
-  //     .then((res) => {
-  //       setCurrentUser(res.user);
-  //       localStorage.setItem("jwt", res.token);
-  //       setLoggedIn(true);
-  //       handleCloseModal();
-  //       history.push("/profile");
-  //     })
-  //     .catch(console.error);
-  // };
-
-  // request1(loginInfo).then((data1) => {
-  //   const token = data1.token;
-  //   return request2(token).then((data2) => {
-  //     const user = data2.user;
-  //     // now set isLoggedIn to true and save the currentUser
-  //   })
-  // }).catch(...) // catches for both inner and outer promise
-
   const handleLogIn = (email, password) => {
     auth
       .login(email, password)
       .then((res) => {
-        const token = localStorage.setItem("jwt", res.token);
-        return auth
-          .getContent(token)
-          .then((data) => {
-            const user = data.user;
-            setLoggedIn(true);
-            setCurrentUser(user);
-            history.push("/profile");
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+        const token = res.token;
+        localStorage.setItem("jwt", res.token);
+        return auth.getContent(token).then((data) => {
+          const user = data.user;
+          setLoggedIn(true);
+          setCurrentUser(user);
+          handleCloseModal();
+          history.push("/profile");
+        });
       })
       .catch(console.error);
   };
@@ -140,24 +116,24 @@ function App() {
     history.push("/");
   };
 
-  const handleLikeClick = (_id, isLiked, user) => {
+  const handleLikeClick = ({ id, isLiked, user }) => {
     const token = localStorage.getItem("jwt");
     isLiked
       ? api
 
-          .addCardLike(_id, token)
+          .addCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === _id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? updatedCard.data : c))
             );
           })
           .catch(console.error)
       : api
 
-          .removeCardLike(_id, token)
+          .removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === _id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? updatedCard.data : c))
             );
           })
           .catch(console.error);

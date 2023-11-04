@@ -25,7 +25,7 @@ const login = ({ email, password }) => {
 };
 
 // Check Token
-const getContent = ({ token }) => {
+const getContent = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {

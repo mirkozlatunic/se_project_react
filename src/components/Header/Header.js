@@ -45,7 +45,7 @@ const Header = ({
               + Add Clothes
             </button>
             <Link className="header__name" to="/profile">
-              {name}Mirko Zlatunic
+              {name}
             </Link>
             <div>
               {showAvatar ? (
