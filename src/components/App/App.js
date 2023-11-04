@@ -85,26 +85,32 @@ function App() {
   //     .catch(console.error);
   // };
 
+  // request1(loginInfo).then((data1) => {
+  //   const token = data1.token;
+  //   return request2(token).then((data2) => {
+  //     const user = data2.user;
+  //     // now set isLoggedIn to true and save the currentUser
+  //   })
+  // }).catch(...) // catches for both inner and outer promise
+
   const handleLogIn = (email, password) => {
     auth
       .login(email, password)
-      .then((data) => {
-        console.log("API Response:", data);
-        if (data.token) {
-          localStorage.setItem("jwt", data.token);
-          console.log(data.token);
-
-          setLoggedIn(true);
-          setCurrentUser(data);
-          handleCloseModal();
-          history.push("/profile");
-        } else {
-          console.error("Login failed.");
-        }
+      .then((res) => {
+        const token = localStorage.setItem("jwt", res.token);
+        return auth
+          .getContent(token)
+          .then((data) => {
+            const user = data.user;
+            setLoggedIn(true);
+            setCurrentUser(user);
+            history.push("/profile");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch(console.error);
   };
 
   // const handleUserChanges = (editUser) => {
