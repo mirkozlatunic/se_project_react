@@ -104,9 +104,10 @@ function App() {
     setIsLoading(true);
     auth
       .editProfile(data)
-      .then((res) => setCurrentUser(res))
+      .then((res) => setCurrentUser(res.data))
       .then(() => handleCloseModal())
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setIsLoading(false));
   };
 
   const handleLogOut = () => {
@@ -220,8 +221,12 @@ function App() {
           }
         })
         .catch(console.error);
+    } else {
+      localStorage.removeItem("jwt");
+      setLoggedIn(false);
+      console.log("Token not Found");
     }
-  }, []);
+  }, [loggedIn, history]);
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -299,11 +304,11 @@ function App() {
           <EditProfileModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "edit"}
-            onUserChanges={handleUserChanges}
+            onSubmit={handleUserChanges}
             currentUser={currentUser}
-            isLoading={isLoading}
             setActiveModal={setActiveModal}
-            onSubmit={handleEditProfile}
+            handleEditProfileModal={handleEditProfile}
+            isLoading={isLoading}
           />
         )}
       </CurrentUserContext.Provider>

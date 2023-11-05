@@ -10,12 +10,12 @@ const EditProfileModal = ({
 }) => {
   const currentUser = useContext(CurrentUserContext);
 
-  const [name, setName] = useState(currentUser.name);
+  const [name, setName] = useState(currentUser.name || "");
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState(currentUser.avatar || "");
   const handleAvatarChange = (e) => {
     setAvatar(e.target.value);
   };
@@ -25,7 +25,7 @@ const EditProfileModal = ({
     onSubmit({ name: name, avatar: avatar });
   };
 
-  const isEnabled = { name }.length > 0 && { avatar }.length > 0;
+  const isEnabled = name.length > 0 && avatar.length > 0;
 
   return (
     <ModalWithForm
