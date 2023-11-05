@@ -255,8 +255,8 @@ function App() {
               onCreateModal={handleCreateModal}
               onSelectCard={handleSelectedCard}
               clothingItems={clothingItems}
-              onEditProfile={handleEditProfileModal}
-              onLogOut={handleLogOut}
+              handleEditProfileModal={handleEditProfileModal}
+              handleLogOut={handleLogOut}
               onCardLike={handleLikeClick}
               loggedIn={loggedIn}
             />

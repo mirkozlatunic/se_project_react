@@ -15,9 +15,9 @@ const EditProfileModal = ({
     setName(e.target.value);
   };
 
-  const [avatar, setavatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState(currentUser.avatar);
   const handleAvatarChange = (e) => {
-    setavatar(e.target.value);
+    setAvatar(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -25,12 +25,15 @@ const EditProfileModal = ({
     onSubmit({ name: name, avatar: avatar });
   };
 
+  const isEnabled = { name }.length > 0 && { avatar }.length > 0;
+
   return (
     <ModalWithForm
       buttonText={isLoading ? "Submitting Changes..." : "Submit Changes"}
       onClose={handleCloseModal}
       onSubmit={handleSubmit}
       isOpen={isOpen}
+      isEnabled={isEnabled}
     >
       <h2>Change profile Data</h2>
       <label className="modal__label">
@@ -41,7 +44,7 @@ const EditProfileModal = ({
           name="name"
           value={name}
           onChange={handleNameChange}
-          placeholder={name}
+          placeholder="Name"
           minLength="1"
           maxLength="30"
         ></input>
@@ -51,10 +54,10 @@ const EditProfileModal = ({
         <input
           className="modal__input"
           type="url"
-          name="link"
+          name="avatar"
           value={avatar}
           onChange={handleAvatarChange}
-          placeholder={avatar}
+          placeholder="Avatar URL"
           minLength="1"
         ></input>
       </label>
