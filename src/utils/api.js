@@ -29,12 +29,12 @@ const postNewClothingItem = ({ name, imageUrl, weather }) => {
   }).then(checkResponse);
 };
 
-const deleteClothingItems = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}`, {
+const deleteClothingItems = (_id) => {
+  return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   }).then(checkResponse);
 };
@@ -50,22 +50,22 @@ const editUserProfile = ({ name, avatar }) => {
   }).then(checkResponse);
 };
 
-const removeCardLike = (id, token) => {
+const removeCardLike = (id) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   }).then(checkResponse);
 };
 
-const addCardLike = (id, token) => {
+const addCardLike = (id) => {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   }).then(checkResponse);
 };

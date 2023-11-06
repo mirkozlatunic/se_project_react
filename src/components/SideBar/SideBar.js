@@ -6,7 +6,7 @@ function SideBar({ handleEditProfileModal, handleLogOut }) {
   const currentUser = useContext(CurrentUserContext);
   const avatar = currentUser ? currentUser.avatar : "";
   const name = currentUser ? currentUser.name : "";
-  const showAvatar = avatar !== "" ? true : null;
+  const showAvatar = avatar !== "" ? true : false;
 
   return (
     <section className="sidebar">

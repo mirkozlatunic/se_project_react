@@ -89,17 +89,6 @@ function App() {
       .catch(console.error);
   };
 
-  // const handleUserChanges = (editUser) => {
-  //   auth
-  //     .editProfile(editUser)
-  //     .then((newUser) => {
-  //       console.log(newUser);
-  //       setCurrentUser(newUser);
-  //       handleCloseModal();
-  //     })
-  //     .catch(console.error);
-  // };
-
   const handleUserChanges = (data) => {
     setIsLoading(true);
     auth
@@ -155,9 +144,9 @@ function App() {
       .catch(console.error);
   };
 
-  const handleDeleteItemSubmit = (card, token) => {
+  const handleDeleteItemSubmit = (card) => {
     api
-      .deleteClothingItems(card._id, token)
+      .deleteClothingItems(card)
       .then(() => {
         setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
         handleCloseModal();
@@ -287,7 +276,6 @@ function App() {
             handleCloseModal={handleCloseModal}
             onSignUp={handleSignUp}
             isOpen={activeModal === "signup"}
-            handleDeleteItemSubmit={handleDeleteItemSubmit}
             onLogInModal={handleLoginModal}
             setActiveModal={setActiveModal}
           />
