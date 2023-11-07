@@ -29,8 +29,8 @@ const postNewClothingItem = ({ name, imageUrl, weather }) => {
   }).then(checkResponse);
 };
 
-const deleteClothingItems = (_id) => {
-  return fetch(`${baseUrl}/items/${_id}`, {
+const deleteClothingItems = (id) => {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
