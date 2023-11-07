@@ -100,7 +100,7 @@ function App() {
   };
 
   const handleLogOut = () => {
-    setCurrentUser("");
+    setCurrentUser({});
     localStorage.removeItem("jwt");
     setLoggedIn(false);
     history.push("/");
@@ -135,6 +135,7 @@ function App() {
   };
 
   const handleAddItemSubmit = (item) => {
+    setIsLoading(true);
     api
       .postNewClothingItem(item)
       .then((newItem) => {
@@ -154,15 +155,6 @@ function App() {
         handleCloseModal();
       })
       .catch(console.error);
-  };
-
-  const handleEditProfile = (data) => {
-    setIsLoading(true);
-    api
-      .editUserProfile(data)
-      .then((res) => setCurrentUser(res))
-      .then(() => handleCloseModal())
-      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -297,7 +289,6 @@ function App() {
             onSubmit={handleUserChanges}
             currentUser={currentUser}
             setActiveModal={setActiveModal}
-            handleEditProfileModal={handleEditProfile}
             isLoading={isLoading}
           />
         )}
