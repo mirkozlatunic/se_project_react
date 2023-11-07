@@ -15,7 +15,6 @@ const ItemCard = ({ item, onSelectCard, onCardLike, loggedIn }) => {
 
   const handleLikeClick = () => {
     onCardLike({ id: cardId, isLiked: isLiked });
-    console.log({ cardId, isLiked, userId });
   };
 
   return (

@@ -108,7 +108,7 @@ function App() {
 
   const handleLikeClick = ({ id, isLiked, user }) => {
     const token = localStorage.getItem("jwt");
-    isLiked
+    !isLiked
       ? api
 
           .addCardLike(id, token)
@@ -144,11 +144,13 @@ function App() {
       .catch(console.error);
   };
 
-  const handleDeleteItemSubmit = (card) => {
+  const handleDeleteItemSubmit = () => {
     api
-      .deleteClothingItems(card)
+      .deleteClothingItems(selectedCard._id)
       .then(() => {
-        setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
+        setClothingItems((cards) =>
+          cards.filter((c) => c._id !== selectedCard._id)
+        );
         handleCloseModal();
       })
       .catch(console.error);
