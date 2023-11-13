@@ -1,69 +1,72 @@
 export const WeatherOptions = [
   {
-    url: require('../images/day/sunny.svg').default,
+    url: require("../images/day/sunny.svg").default,
     day: true,
-    type: 'sunny',
+    type: "sunny",
   },
   {
-    url: require('../images/day/cloudy.svg').default,
+    url: require("../images/day/cloudy.svg").default,
     day: true,
-    type: 'cloudy',
+    type: "cloudy",
   },
   {
-    url: require('../images/day/foggy.svg').default,
+    url: require("../images/day/foggy.svg").default,
     day: true,
-    type: 'foggy',
+    type: "foggy",
   },
   {
-    url: require('../images/day/rainy.svg').default,
+    url: require("../images/day/rainy.svg").default,
     day: true,
-    type: 'rainy',
+    type: "rainy",
   },
   {
-    url: require('../images/day/snowy.svg').default,
+    url: require("../images/day/snowy.svg").default,
     day: true,
-    type: 'snowy',
+    type: "snowy",
   },
   {
-    url: require('../images/day/stormy.svg').default,
+    url: require("../images/day/stormy.svg").default,
     day: true,
-    type: 'stormy',
+    type: "stormy",
   },
   {
-    url: require('../images/night/moon.svg').default,
+    url: require("../images/night/moon.svg").default,
     day: false,
-    type: 'moon',
+    type: "moon",
   },
   {
-    url: require('../images/night/cloud.svg').default,
+    url: require("../images/night/cloud.svg").default,
     day: false,
-    type: 'cloud',
+    type: "cloud",
   },
   {
-    url: require('../images/night/fog.svg').default,
+    url: require("../images/night/fog.svg").default,
     day: false,
-    type: 'fog',
+    type: "fog",
   },
   {
-    url: require('../images/night/rain.svg').default,
+    url: require("../images/night/rain.svg").default,
     day: false,
-    type: 'rain',
+    type: "rain",
   },
   {
-    url: require('../images/night/snow.svg').default,
+    url: require("../images/night/snow.svg").default,
     day: false,
-    type: 'snow',
+    type: "snow",
   },
   {
-    url: require('../images/night/storm.svg').default,
+    url: require("../images/night/storm.svg").default,
     day: false,
-    type: 'storm',
+    type: "storm",
   },
-]
+];
 
-export const baseUrl = 'http://localhost:3001'
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "deployed-backend-url"
+    : "http://localhost:3001";
 
 export const headers = {
-  authorization: '',
-  'Content-Type': 'application/json',
-}
+  authorization: "",
+  "Content-Type": "application/json",
+};

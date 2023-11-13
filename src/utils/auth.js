@@ -1,6 +1,5 @@
 import { checkResponse } from "./api";
-
-const baseUrl = "http://localhost:3001";
+import { baseUrl } from "./constants";
 
 // Sign up
 const createUser = ({ name, avatar, email, password }) => {
