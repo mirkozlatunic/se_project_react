@@ -63,7 +63,7 @@ export const WeatherOptions = [
 
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "api.hwpo-hstl.jumpingcrabs.com"
+    ? "https://www.hwpo-hstl.jumpingcrabs.com"
     : "http://localhost:3001";
 
 export const headers = {
