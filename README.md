@@ -53,3 +53,7 @@ Change Profile Name and Picture at Profiel Page
 - [Backend Repository Link](https://github.com/mirkozlatunic/se_project_express)
 
 **Created By [Mirko Zlatunic](https://github.com/mirkozlatunic)**
+
+## Improvements
+- [ ] Home Page cards align to the center of the page
+- [ ] Domain Adjustment to make it access ofr public
