@@ -57,3 +57,4 @@ Change Profile Name and Picture at Profiel Page
 ## Improvements
 - [ ] Home Page cards align to the center of the page
 - [ ] Domain Adjustment to make it access ofr public
+- [ ] WeatherCard adjustment to change picture base on the WeatherAPI
