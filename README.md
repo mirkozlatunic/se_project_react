@@ -58,3 +58,4 @@ Change Profile Name and Picture at Profiel Page
 - [ ] Home Page cards align to the center of the page
 - [ ] Domain Adjustment to make it access ofr public
 - [ ] WeatherCard adjustment to change picture base on the WeatherAPI
+- [ ] Add functionality to change the region at the header section
