@@ -5,7 +5,6 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 const ItemCard = ({ item, onSelectCard, onCardLike, loggedIn }) => {
   const currentUser = useContext(CurrentUserContext);
   const cardId = item._id;
-  const userId = currentUser ? currentUser._id : "";
 
   // Check if the item was liked by the current user.The likes array should be an array of ids
   const isLiked = item.likes.some((id) => id === currentUser._id);

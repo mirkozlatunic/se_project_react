@@ -11,6 +11,8 @@ function Main({
   clothingItems,
   onCardLike,
   loggedIn,
+  weatherType,
+  isDay,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp.temperature?.[currentTemperatureUnit] || 999;
@@ -34,17 +36,17 @@ function Main({
     }
   };
 
-  const weatherType = getWeatherType();
+  const temperatureCategory = getWeatherType();
 
   const filteredCards = clothingItems.filter((item) => {
-    return item.weather.toLowerCase() === weatherType;
+    return item.weather.toLowerCase() === temperatureCategory;
   });
 
   return (
     <main className="main">
       <WeatherCard
-        day={true}
-        type="sunny"
+        day={isDay}
+        type={weatherType}
         weatherTemp={temp}
         currentTemperatureUnit={currentTemperatureUnit}
       />

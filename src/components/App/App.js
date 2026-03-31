@@ -9,6 +9,7 @@ import {
   getForcastWeather,
   parseWeatherData,
   parseLocationData,
+  getCoordinates,
 } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route, useHistory } from "react-router-dom";
@@ -29,6 +30,9 @@ function App() {
   // const [newClothingItem, setNewClothingItem] = useState({})
   const [weatherLocation, setWeatherLocation] = useState("");
   const [temp, setTemp] = useState(0);
+  const [weatherType, setWeatherType] = useState("sunny");
+  const [isDay, setIsDay] = useState(true);
+  const [coordinates, setCoordinates] = useState({ lat: 33.8492, lon: -118.3884 });
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -62,12 +66,10 @@ function App() {
     auth
       .createUser(user)
       .then((newUser) => {
-        console.log(newUser);
         setLoggedIn(true);
         setCurrentUser(newUser.data);
         handleCloseModal();
         localStorage.setItem("jwt", newUser.token);
-        console.log(currentUser);
       })
       .catch(console.error);
   };
@@ -142,7 +144,8 @@ function App() {
         setClothingItems([newItem.data, ...clothingItems]);
         handleCloseModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
   const handleDeleteItemSubmit = () => {
@@ -157,16 +160,27 @@ function App() {
       .catch(console.error);
   };
 
+  const handleLocationChange = (city) => {
+    getCoordinates(city)
+      .then(({ lat, lon, name }) => {
+        setCoordinates({ lat, lon });
+        setWeatherLocation(name);
+      })
+      .catch(console.error);
+  };
+
   useEffect(() => {
-    getForcastWeather()
+    getForcastWeather(coordinates.lat, coordinates.lon)
       .then((data) => {
-        const temperature = parseWeatherData(data);
+        const weather = parseWeatherData(data);
         const location = parseLocationData(data);
-        setTemp(temperature);
+        setTemp(weather);
+        setWeatherType(weather.weatherType);
+        setIsDay(weather.isDay);
         setWeatherLocation(location);
       })
       .catch(console.error);
-  }, []);
+  }, [coordinates]);
 
   useEffect(() => {
     api
@@ -207,7 +221,6 @@ function App() {
     } else {
       localStorage.removeItem("jwt");
       setLoggedIn(false);
-      console.log("Token not Found");
     }
   }, [loggedIn, history]);
 
@@ -217,7 +230,6 @@ function App() {
     >
       <CurrentUserContext.Provider
         value={currentUser}
-        setLoggedIn={setLoggedIn}
       >
         <Header
           onCreateModal={handleCreateModal}
@@ -227,6 +239,7 @@ function App() {
           onLogInModal={handleLoginModal}
           loggedIn={loggedIn}
           weatherLocation={weatherLocation}
+          onLocationChange={handleLocationChange}
         />
         <Switch>
           <Route exact path="/">
@@ -236,6 +249,8 @@ function App() {
               clothingItems={clothingItems}
               loggedIn={loggedIn}
               onCardLike={handleLikeClick}
+              weatherType={weatherType}
+              isDay={isDay}
             />
           </Route>
           <ProtectedRoute path="/profile" loggedIn={loggedIn}>
@@ -285,7 +300,7 @@ function App() {
         {activeModal === "editProfile" && (
           <EditProfileModal
             handleCloseModal={handleCloseModal}
-            isOpen={activeModal === "edit"}
+            isOpen={activeModal === "editProfile"}
             onSubmit={handleUserChanges}
             currentUser={currentUser}
             setActiveModal={setActiveModal}

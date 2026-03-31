@@ -3,7 +3,7 @@ import Logo from "../../images/Logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 const Header = ({
   onCreateModal,
@@ -11,6 +11,7 @@ const Header = ({
   onSignUpModal,
   onLogInModal,
   loggedIn,
+  onLocationChange,
 }) => {
   const currentUser = useContext(CurrentUserContext);
   const avatar = currentUser ? currentUser.avatar : "";
@@ -20,6 +21,20 @@ const Header = ({
     month: "long",
     day: "numeric",
   });
+  const [locationInput, setLocationInput] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleLocationSubmit = (e) => {
+    if (e.key === "Enter" && locationInput.trim()) {
+      onLocationChange(locationInput.trim());
+      setLocationInput("");
+      setIsEditing(false);
+    }
+    if (e.key === "Escape") {
+      setLocationInput("");
+      setIsEditing(false);
+    }
+  };
 
   return (
     <header className="header">
@@ -30,7 +45,27 @@ const Header = ({
           </Link>
         </div>
         <div className="header__date-location">
-          {currentDate}, {weatherLocation}
+          {currentDate},{" "}
+          {isEditing ? (
+            <input
+              className="header__location-input"
+              type="text"
+              value={locationInput}
+              placeholder={weatherLocation}
+              onChange={(e) => setLocationInput(e.target.value)}
+              onKeyDown={handleLocationSubmit}
+              onBlur={() => { setLocationInput(""); setIsEditing(false); }}
+              autoFocus
+            />
+          ) : (
+            <span
+              className="header__location-text"
+              onClick={() => setIsEditing(true)}
+              title="Click to change location"
+            >
+              {weatherLocation}
+            </span>
+          )}
         </div>
       </div>
       <div className="header__logo">

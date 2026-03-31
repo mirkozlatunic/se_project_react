@@ -26,6 +26,28 @@
   line-height: 1.2;
 }
 
+.header__location-text {
+  cursor: pointer;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.header__location-text:hover {
+  opacity: 0.6;
+}
+
+.header__location-input {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  border: none;
+  border-bottom: 2px solid #000;
+  background: transparent;
+  outline: none;
+  width: 140px;
+}
+
 .header__add-button {
   border: none;
   padding: 5px 0px 5px 0px;
