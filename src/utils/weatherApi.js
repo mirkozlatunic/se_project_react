@@ -22,12 +22,18 @@ export const getCoordinates = (city) => {
     })
 }
 
-const weatherConditionMap = {
+export const weatherConditionMap = {
   Clear: { day: "sunny", night: "moon" },
   Clouds: { day: "cloudy", night: "cloud" },
   Fog: { day: "foggy", night: "fog" },
   Mist: { day: "foggy", night: "fog" },
   Haze: { day: "foggy", night: "fog" },
+  Smoke: { day: "foggy", night: "fog" },
+  Dust: { day: "foggy", night: "fog" },
+  Sand: { day: "foggy", night: "fog" },
+  Ash: { day: "foggy", night: "fog" },
+  Squall: { day: "stormy", night: "storm" },
+  Tornado: { day: "stormy", night: "storm" },
   Rain: { day: "rainy", night: "rain" },
   Drizzle: { day: "rainy", night: "rain" },
   Snow: { day: "snowy", night: "snow" },

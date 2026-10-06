@@ -62,11 +62,7 @@ export const WeatherOptions = [
 ];
 
 export const baseUrl =
-  process.env.NODE_ENV === "production"
+  process.env.REACT_APP_API_URL ||
+  (process.env.NODE_ENV === "production"
     ? "https://api.hwpo-hstl.jumpingcrab.com"
-    : "http://localhost:3001";
-
-export const headers = {
-  authorization: "",
-  "Content-Type": "application/json",
-};
+    : "http://localhost:3001");

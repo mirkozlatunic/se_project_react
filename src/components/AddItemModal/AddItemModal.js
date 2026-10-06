@@ -6,6 +6,7 @@ const AddItemModal = ({
   handleAddItemSubmit,
   isOpen,
   isLoading,
+  error,
 }) => {
   const [name, setName] = useState("");
   const [imageUrl, setUrl] = useState("");
@@ -37,7 +38,7 @@ const AddItemModal = ({
   };
 
   const isEnabled =
-    name.length > 0 && imageUrl.length > 0 && weather.length > 0;
+    name.length >= 2 && imageUrl.length > 0 && weather.length > 0;
 
   return (
     <ModalWithForm
@@ -47,6 +48,7 @@ const AddItemModal = ({
       onSubmit={handleSubmit}
       buttonText={isLoading ? "Saving..." : "Add Garment"}
       isEnabled={isEnabled}
+      error={error}
     >
       <div className="modal__text-inputs">
         <label className="modal__label">
@@ -54,8 +56,9 @@ const AddItemModal = ({
           <input
             type="text"
             name="name"
-            minLength="1"
+            minLength="2"
             maxLength="30"
+            required
             className="modal__input"
             placeholder="Name"
             value={name}

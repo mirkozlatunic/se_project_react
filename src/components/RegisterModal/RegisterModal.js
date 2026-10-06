@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const RegisterModal = ({ handleCloseModal, onSignUp, onLogInModal }) => {
+const RegisterModal = ({ handleCloseModal, onSignUp, onLogInModal, error }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -23,7 +23,10 @@ const RegisterModal = ({ handleCloseModal, onSignUp, onLogInModal }) => {
     setPassword(e.target.value);
   };
 
-  const isEnabled = name.length > 0 && email.length > 0 && password.length > 0;
+  const isEnabled = name.length >= 2 &&
+    avatar.length > 0 &&
+    email.length > 0 &&
+    password.length > 0;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +42,7 @@ const RegisterModal = ({ handleCloseModal, onSignUp, onLogInModal }) => {
       onSubmit={handleSubmit}
       altSubmit={onLogInModal}
       isEnabled={isEnabled}
+      error={error}
     >
       <label className="modal__label">
         Email*
@@ -68,28 +72,29 @@ const RegisterModal = ({ handleCloseModal, onSignUp, onLogInModal }) => {
         ></input>
       </label>
       <label className="modal__label">
-        Name
+        Name*
         <input
           className="modal__input"
-          type="name"
+          type="text"
           name="name"
           value={name}
           onChange={handleNameChange}
           placeholder="Name"
-          minLength="1"
+          minLength="2"
           maxLength="30"
+          required
         ></input>
       </label>
       <label className="modal__label">
-        Avatar URL
+        Avatar URL*
         <input
           className="modal__input"
           type="url"
-          name="link"
+          name="avatar"
           value={avatar}
           onChange={handleAvatarChange}
           placeholder="Avatar URL"
-          minLength="1"
+          required
         ></input>
       </label>
     </ModalWithForm>

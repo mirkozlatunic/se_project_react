@@ -37,58 +37,65 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(
+    Boolean(localStorage.getItem("jwt"))
+  );
+  const [formError, setFormError] = useState("");
   const history = useHistory();
 
+  const openModal = (name) => {
+    setFormError("");
+    setActiveModal(name);
+  };
   const handleCreateModal = () => {
-    setActiveModal("create");
+    openModal("create");
   };
   const handleCloseModal = () => {
-    setActiveModal("");
+    openModal("");
   };
   const handleSelectedCard = (card) => {
-    setActiveModal("preview");
+    openModal("preview");
     setSelectedCard(card);
   };
 
   const handleSignupModal = () => {
-    setActiveModal("signup");
+    openModal("signup");
   };
 
   const handleEditProfileModal = () => {
-    setActiveModal("editProfile");
+    openModal("editProfile");
   };
 
   const handleLoginModal = () => {
-    setActiveModal("login");
+    openModal("login");
   };
+
+  const logInWithCredentials = ({ email, password }) =>
+    auth.login({ email, password }).then((res) => {
+      localStorage.setItem("jwt", res.token);
+      return auth.getContent(res.token).then((user) => {
+        setCurrentUser(user);
+        setLoggedIn(true);
+        handleCloseModal();
+        history.push("/profile");
+      });
+    });
 
   const handleSignUp = (user) => {
+    setFormError("");
     auth
       .createUser(user)
-      .then((newUser) => {
-        setLoggedIn(true);
-        setCurrentUser(newUser.data);
-        handleCloseModal();
-        localStorage.setItem("jwt", newUser.token);
-      })
-      .catch(console.error);
+      .then(() =>
+        logInWithCredentials({ email: user.email, password: user.password })
+      )
+      .catch((err) => setFormError(err.message || "Sign up failed"));
   };
 
-  const handleLogIn = (email, password) => {
-    auth
-      .login(email, password)
-      .then((res) => {
-        const token = res.token;
-        localStorage.setItem("jwt", res.token);
-        return auth.getContent(token).then((data) => {
-          const user = data.user;
-          setLoggedIn(true);
-          setCurrentUser(user);
-          handleCloseModal();
-          history.push("/profile");
-        });
-      })
-      .catch(console.error);
+  const handleLogIn = (credentials) => {
+    setFormError("");
+    logInWithCredentials(credentials).catch((err) =>
+      setFormError(err.message || "Log in failed")
+    );
   };
 
   const handleUserChanges = (data) => {
@@ -97,7 +104,7 @@ function App() {
       .editProfile(data)
       .then((res) => setCurrentUser(res.data))
       .then(() => handleCloseModal())
-      .catch((err) => console.error(err))
+      .catch((err) => setFormError(err.message || "Update failed"))
       .finally(() => setIsLoading(false));
   };
 
@@ -141,10 +148,10 @@ function App() {
     api
       .postNewClothingItem(item)
       .then((newItem) => {
-        setClothingItems([newItem.data, ...clothingItems]);
+        setClothingItems((items) => [newItem.data, ...items]);
         handleCloseModal();
       })
-      .catch(console.error)
+      .catch((err) => setFormError(err.message || "Could not add item"))
       .finally(() => setIsLoading(false));
   };
 
@@ -170,8 +177,10 @@ function App() {
   };
 
   useEffect(() => {
+    let cancelled = false;
     getForcastWeather(coordinates.lat, coordinates.lon)
       .then((data) => {
+        if (cancelled) return;
         const weather = parseWeatherData(data);
         const location = parseLocationData(data);
         setTemp(weather);
@@ -180,6 +189,9 @@ function App() {
         setWeatherLocation(location);
       })
       .catch(console.error);
+    return () => {
+      cancelled = true;
+    };
   }, [coordinates]);
 
   useEffect(() => {
@@ -196,7 +208,7 @@ function App() {
     const handleEscClose = (e) => {
       // define the function inside useEffect not to lose the reference on rerendering
       if (e.key === "Escape") {
-        handleCloseModal();
+        setActiveModal("");
       }
     };
     document.addEventListener("keydown", handleEscClose);
@@ -208,21 +220,21 @@ function App() {
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      auth
-        .getContent(jwt)
-        .then((res) => {
-          if (res) {
-            setCurrentUser(res);
-            setLoggedIn(true);
-          }
-        })
-        .catch(console.error);
-    } else {
-      localStorage.removeItem("jwt");
-      setLoggedIn(false);
-    }
-  }, [loggedIn, history]);
+    if (!jwt) return;
+    auth
+      .getContent(jwt)
+      .then((user) => {
+        setCurrentUser(user);
+        setLoggedIn(true);
+      })
+      .catch((err) => {
+        console.error(err);
+        if (err.status === 401 || err.status === 404) {
+          localStorage.removeItem("jwt");
+        }
+      })
+      .finally(() => setIsCheckingAuth(false));
+  }, []);
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -253,7 +265,11 @@ function App() {
               isDay={isDay}
             />
           </Route>
-          <ProtectedRoute path="/profile" loggedIn={loggedIn}>
+          <ProtectedRoute
+            path="/profile"
+            loggedIn={loggedIn}
+            isCheckingAuth={isCheckingAuth}
+          >
             <Profile
               onCreateModal={handleCreateModal}
               onSelectCard={handleSelectedCard}
@@ -271,6 +287,8 @@ function App() {
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
             handleAddItemSubmit={handleAddItemSubmit}
+            isLoading={isLoading}
+            error={formError}
           />
         )}
         {activeModal === "preview" && (
@@ -284,15 +302,16 @@ function App() {
           <RegisterModal
             handleCloseModal={handleCloseModal}
             onSignUp={handleSignUp}
+            error={formError}
             isOpen={activeModal === "signup"}
             onLogInModal={handleLoginModal}
-            setActiveModal={setActiveModal}
           />
         )}
         {activeModal === "login" && (
           <LoginModal
             handleCloseModal={handleCloseModal}
             onLogin={handleLogIn}
+            error={formError}
             onSignUpModal={handleSignupModal}
             isOpen={activeModal === "login"}
           />
@@ -302,9 +321,8 @@ function App() {
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "editProfile"}
             onSubmit={handleUserChanges}
-            currentUser={currentUser}
-            setActiveModal={setActiveModal}
             isLoading={isLoading}
+            error={formError}
           />
         )}
       </CurrentUserContext.Provider>

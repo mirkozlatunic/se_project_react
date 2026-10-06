@@ -7,6 +7,7 @@ const EditProfileModal = ({
   onSubmit,
   isLoading,
   isOpen,
+  error,
 }) => {
   const currentUser = useContext(CurrentUserContext);
 
@@ -25,7 +26,7 @@ const EditProfileModal = ({
     onSubmit({ name: name, avatar: avatar });
   };
 
-  const isEnabled = name.length > 0 && avatar.length > 0;
+  const isEnabled = name.length >= 2 && avatar.length > 0;
 
   return (
     <ModalWithForm
@@ -34,19 +35,21 @@ const EditProfileModal = ({
       onSubmit={handleSubmit}
       isOpen={isOpen}
       isEnabled={isEnabled}
+      error={error}
     >
       <h2>Change profile Data</h2>
       <label className="modal__label">
         Name
         <input
           className="modal__input"
-          type="name"
+          type="text"
           name="name"
           value={name}
           onChange={handleNameChange}
           placeholder="Name"
-          minLength="1"
+          minLength="2"
           maxLength="30"
+          required
         ></input>
       </label>
       <label className="modal__label">
