@@ -6,7 +6,7 @@ WTWR is a weather-based clothing recommendation app. It fetches your local weath
 
 ## Features
 
-- Live weather data fetched from the OpenWeather API
+- Weather data fetched from the OpenWeather API
 - Temperature display in Fahrenheit or Celsius (toggle in the header)
 - Browse clothing recommendations matched to the current weather
 - User authentication — register, log in, and log out
@@ -60,17 +60,27 @@ WTWR is a weather-based clothing recommendation app. It fetches your local weath
    npm install
    ```
 
-3. Create a `.env` file in the project root and add your OpenWeather API key:
+3. Copy `.env.example` to `.env` and add your OpenWeather API key:
    ```
    REACT_APP_WEATHER_API_KEY=your_api_key_here
    ```
+   Optionally set `REACT_APP_API_URL` to point at a different backend (defaults to `http://localhost:3001` in development and `https://api.hwpo-hstl.jumpingcrab.com` in production builds). The API key is bundled into the client, so restrict it in the OpenWeather dashboard.
 
 4. Start the development server:
    ```bash
    npm start
    ```
 
-The app will open at `http://localhost:3000`. It connects to the backend at `http://localhost:3001` in development mode.
+The app will open at `http://localhost:3000`.
+
+### Scripts
+
+- `npm start` – development server
+- `npm test` – run the test suite (Jest + React Testing Library)
+- `npm run build` – production build
+- `npm run deploy` – build and copy `build/` to the server via `scp`
+
+The weather defaults to a fixed location; use the location in the header to search for another city.
 
 ## Technologies
 

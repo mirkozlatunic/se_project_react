@@ -4,7 +4,15 @@ export const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Error: ${res.status}`);
+  return res
+    .json()
+    .catch(() => ({}))
+    .then((body) =>
+      Promise.reject({
+        status: res.status,
+        message: body.message || `Error: ${res.status}`,
+      })
+    );
 };
 
 const getClothingItems = () => {

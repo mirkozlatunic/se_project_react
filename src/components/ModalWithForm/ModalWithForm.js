@@ -11,17 +11,25 @@ const ModalWithForm = ({
   onSubmit,
   altSubmit,
   isEnabled,
+  error,
 }) => {
   const submitButtonClass = `modal__submit-button ${
     isEnabled ? "modal__submit-button_enabled" : "modal__submit-button_disabled"
   }`;
 
   return (
-    <div className={`modal modal__type_${modalName}`}>
+    <div
+      className={`modal modal__type_${modalName}`}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title || "Dialog"}
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+    >
       <div className="modal__container">
         <button
           type="button"
           onClick={onClose}
+          aria-label="Close"
           className="modal__close-button"
         />
         <h3 className="modal__title">{title}</h3>
@@ -34,9 +42,20 @@ const ModalWithForm = ({
           >
             {buttonText}
           </button>
-          <button className="modal__alt-submit-button" onClick={altSubmit}>
-            {altText}
-          </button>
+          {error && (
+            <p className="modal__error" role="alert">
+              {error}
+            </p>
+          )}
+          {altText && (
+            <button
+              type="button"
+              className="modal__alt-submit-button"
+              onClick={altSubmit}
+            >
+              {altText}
+            </button>
+          )}
         </form>
       </div>
     </div>

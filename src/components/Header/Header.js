@@ -1,7 +1,7 @@
 import "./Header.css";
 import Logo from "../../images/Logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React, { useContext, useState } from "react";
 
@@ -14,9 +14,9 @@ const Header = ({
   onLocationChange,
 }) => {
   const currentUser = useContext(CurrentUserContext);
-  const avatar = currentUser ? currentUser.avatar : "";
-  const name = currentUser ? currentUser.name : "";
-  const showAvatar = avatar !== "" ? true : false;
+  const avatar = currentUser?.avatar || "";
+  const name = currentUser?.name || "";
+  const showAvatar = avatar !== "";
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",

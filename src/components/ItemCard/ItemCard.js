@@ -7,7 +7,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike, loggedIn }) => {
   const cardId = item._id;
 
   // Check if the item was liked by the current user.The likes array should be an array of ids
-  const isLiked = item.likes.some((id) => id === currentUser._id);
+  const isLiked = (item.likes || []).some((id) => id === currentUser?._id);
   const likeButtonClassName = isLiked
     ? "card__like-button card__like-button-active"
     : "card__like-button ";
@@ -24,6 +24,7 @@ const ItemCard = ({ item, onSelectCard, onCardLike, loggedIn }) => {
           <button
             className={likeButtonClassName}
             type="button"
+            aria-label={isLiked ? "Unlike" : "Like"}
             onClick={handleLikeClick}
           />
         ) : (

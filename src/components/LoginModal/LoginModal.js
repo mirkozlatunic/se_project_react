@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ handleCloseModal, onSignUpModal, onLogin }) => {
+const LoginModal = ({ handleCloseModal, onSignUpModal, onLogin, error }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -29,6 +29,7 @@ const LoginModal = ({ handleCloseModal, onSignUpModal, onLogin }) => {
       onSubmit={handleSubmit}
       altSubmit={onSignUpModal}
       isEnabled={isEnabled}
+      error={error}
     >
       <label className="modal__label">
         Email
@@ -39,7 +40,7 @@ const LoginModal = ({ handleCloseModal, onSignUpModal, onLogin }) => {
           value={email}
           onChange={handleEmailChange}
           placeholder="Email"
-          minLength="1"
+          required
         ></input>
       </label>
       <label className="modal__label">

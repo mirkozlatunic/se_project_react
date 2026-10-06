@@ -7,18 +7,25 @@ const ItemModal = ({ selectedCard, onClose, handleDeleteItemSubmit }) => {
   const currentUser = userContext ? userContext : { name: "n/a", avatar: "" };
 
   // Checking if the current user is the owner of the current clothing item
-  const isOwn = selectedCard.owner === currentUser._id;
+  const isOwn = Boolean(currentUser._id) && selectedCard.owner === currentUser._id;
 
   // Creating a variable which you'll then set in `className` for the delete button
   const itemDeleteButtonClassName = `modal__delete-button ${
     isOwn ? "modal__delete-button_visible" : "modal__delete-button_hidden"
   }`;
   return (
-    <div className={"modal"}>
+    <div
+      className="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label={selectedCard.name}
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+    >
       <div className="modal__container modal__container-image">
         <button
           type="button"
           onClick={onClose}
+          aria-label="Close"
           className="modal__close-button-white"
         ></button>
         <img

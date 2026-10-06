@@ -178,3 +178,9 @@
   cursor: pointer;
   opacity: 0.6;
 }
+
+.modal__error {
+  margin: 8px 0 0;
+  color: #ff4d4d;
+  font-size: 14px;
+}
